@@ -240,7 +240,9 @@ export default function EnhancedTable() {
         socket.on('connect', () => {
             console.log('Successfully connected!');
         });
-
+        socket.on('disconnect', function() {
+            socket.socket.reconnect();
+        })
 
         // socket.connect('https://localhost:4000','chat message');
         // const socket = io("https://0.0.0.0:4000");
@@ -396,6 +398,7 @@ console.log('socket',socket)
                 control={<Switch checked={dense} onChange={handleChangeDense} />}
                 label="Dense padding"
             />
+            {/*<Button onClick={refreshSocket}>Refresh socket</Button>*/}
         </Box>
     );
 }
